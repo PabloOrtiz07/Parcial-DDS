@@ -1,6 +1,8 @@
-package Transacciones;
+package Entidades;
 
 import Entidades.BilleteraVirtual;
+import Estados.EstadosDeTransaccion;
+
 
 public class Transaccion {
     private EstadosDeTransaccion estadosDeTransaccion;

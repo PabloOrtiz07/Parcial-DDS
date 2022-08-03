@@ -1,4 +1,4 @@
-package Transacciones;
+package Estados;
 
 public interface EstadosDeTransaccion {
 

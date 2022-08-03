@@ -32,4 +32,6 @@ public class BilleteraVirtual {
     public void setTransacciones(List<Transaccion> transacciones) {
         this.transacciones = transacciones;
     }
+
+
 }
