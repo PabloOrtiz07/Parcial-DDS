@@ -1,6 +1,6 @@
 package Transacciones;
 
-public class EstadosDeTransaccion {
+public interface EstadosDeTransaccion {
 
-    
+    public void masInformacion();
 }
