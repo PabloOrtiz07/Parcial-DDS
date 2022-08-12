@@ -2,20 +2,13 @@ package Entidades;
 
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BilleteraVirtual {
 
-    private Integer dineroFiat;
     private List<CriptoMoneda> criptoMonedas = new ArrayList<>();
     private List<Transaccion> transacciones = new ArrayList<>();
 
-    public Integer getDineroFiat() {
-        return dineroFiat;
-    }
-
-    public void setDineroFiat(Integer dineroFiat) {
-        this.dineroFiat = dineroFiat;
-    }
 
     public List<CriptoMoneda> getCriptoMonedas() {
         return criptoMonedas;
@@ -32,6 +25,21 @@ public class BilleteraVirtual {
     public void setTransacciones(List<Transaccion> transacciones) {
         this.transacciones = transacciones;
     }
+
+    public Double cotizarTotalEnDolares(){
+        return this.criptoMonedas.stream().map(criptoMoneda -> {
+            try {
+                return criptoMoneda.precioCriptoMoneda();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }).collect(Collectors.summingDouble(Double::doubleValue));
+    }
+
+    public void guardarCripto(CriptoMoneda criptoMoneda){
+        this.criptoMonedas.add(criptoMoneda);
+    }
+
 
 
 }

@@ -1,9 +1,20 @@
 package Entidades;
 
+import Apis.CriptoApiCalls;
+
 public class CriptoMoneda {
 
     private String name;
-    private Double precio;
+
+    private Integer cantidad;
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
 
     public String getName() {
         return name;
@@ -13,11 +24,13 @@ public class CriptoMoneda {
         this.name = name;
     }
 
-    public Double getPrecio() {
-        return precio;
+    public Double precioCriptoMoneda() throws Exception {
+        CriptoApiCalls criptoApiCalls = new CriptoApiCalls();
+        return criptoApiCalls.obtenerPrecioCriptoMoneda(this.name)*this.cantidad;
     }
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
+    public CriptoMoneda(String name, Integer cantidad) {
+        this.name = name;
+        this.cantidad = cantidad;
     }
 }
