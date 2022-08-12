@@ -1,5 +1,7 @@
 package Entidades;
 
+import FormaDePago.FormasDePago;
+
 import java.util.*;
 
 public class Cliente {
@@ -7,8 +9,21 @@ public class Cliente {
     private String apellido;
     private String correo;
     private String tipoDni;
+
+    private FormasDePago formasDePago;
+
+    public FormasDePago getFormasDePago() {
+        return formasDePago;
+    }
+
+    public void setFormasDePago(FormasDePago formasDePago) {
+        this.formasDePago = formasDePago;
+    }
+
     private BilleteraVirtual billeteraVirtual;
     private List<Cliente> referidos = new ArrayList<>();
+
+
 
     public String getNombre() {
         return nombre;

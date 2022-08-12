@@ -33,4 +33,5 @@ public class CriptoMoneda {
         this.name = name;
         this.cantidad = cantidad;
     }
+
 }

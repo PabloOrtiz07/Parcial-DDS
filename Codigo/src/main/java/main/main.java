@@ -1,5 +1,6 @@
 package main;
 
+import Compra.*;
 import Entidades.CriptoMoneda;
 
 import java.util.Scanner;
@@ -28,20 +29,32 @@ public class main {
         }
 
         private static void comprarCriptoMoneda(){
+            Compra metodoCompra;
             Scanner entrada = new Scanner(System.in);
             String nombre;
             Integer cantidad;
-
             System.out.println("Ingrese que cripto desea comprar: ");
             nombre = entrada.nextLine();
             System.out.println("Ingrese la cantidad: ");
-            cantidad = Integer.valueOf(entrada.nextLine());
+            cantidad = entrada.nextInt();
             CriptoMoneda criptoMoneda = new CriptoMoneda(nombre,cantidad);
-            try {
-                System.out.println("Precio total de la compra: "+criptoMoneda.precioCriptoMoneda());
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            System.out.println("Ingrese el metodo de comprar la cripto: ");
+            System.out.println("0.Comprar con fiat\n1.Comprar Cripto");
+            int seleccion;
+            seleccion = entrada.nextInt();
+            switch (seleccion){
+                case 0:
+                    metodoCompra = new CompraConDineroFiat();
+                    metodoCompra.comprar();
+                    break;
+                case 1:
+                   // comprarCriptoMoneda();
+                    break;
+                default:
+                    System.out.println("Operacion invalida");
+                    break;
             }
+
         }
 
 

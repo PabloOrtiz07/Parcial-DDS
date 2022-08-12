@@ -9,6 +9,15 @@ public class BilleteraVirtual {
     private List<CriptoMoneda> criptoMonedas = new ArrayList<>();
     private List<Transaccion> transacciones = new ArrayList<>();
 
+    private Double dineroFiat;
+
+    public Double getDineroFiat() {
+        return dineroFiat;
+    }
+
+    public void setDineroFiat(Double dineroFiat) {
+        this.dineroFiat = dineroFiat;
+    }
 
     public List<CriptoMoneda> getCriptoMonedas() {
         return criptoMonedas;
@@ -40,6 +49,8 @@ public class BilleteraVirtual {
         this.criptoMonedas.add(criptoMoneda);
     }
 
-
+    public void agregarMoneda(CriptoMoneda criptoMoneda){
+        this.criptoMonedas.add(criptoMoneda);
+    }
 
 }

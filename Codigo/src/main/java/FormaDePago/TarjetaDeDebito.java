@@ -1,7 +1,7 @@
 package FormaDePago;
 
 
-public class TarjetaDeDebito implements FormasDePago{
+public class TarjetaDeDebito extends FormasDePago {
     private Integer numeroTarjeta;
     private String titularTarjeta;
     private Boolean validarTarjeta;

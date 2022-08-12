@@ -1,7 +1,8 @@
 package FormaDePago;
 
-public interface FormasDePago {
-    public void ingresarDinero();
+public abstract class FormasDePago {
+    public abstract void ingresarDinero();
+
 }
 
 
