@@ -23,7 +23,6 @@ public class CriptoApiCalls {
         int status = response.getStatus();
         String responseBody = response.readEntity(String.class);
         if (status == 200) {
-            System.out.println("response = " + responseBody);
 
             JsonNode root=objectMapper.readTree(responseBody);
             JsonNode precioTotal=root.path(nombre);

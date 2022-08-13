@@ -9,6 +9,16 @@ public class BilleteraVirtual {
     private List<CriptoMoneda> criptoMonedas = new ArrayList<>();
     private List<Transaccion> transacciones = new ArrayList<>();
 
+    private String idBilleteraVirtual;
+
+    public String getIdBilleteraVirtual() {
+        return idBilleteraVirtual;
+    }
+
+    public void setIdBilleteraVirtual(String idBilleteraVirtual) {
+        this.idBilleteraVirtual = idBilleteraVirtual;
+    }
+
     private Double dineroFiat;
 
     public Double getDineroFiat() {
@@ -17,6 +27,11 @@ public class BilleteraVirtual {
 
     public void setDineroFiat(Double dineroFiat) {
         this.dineroFiat = dineroFiat;
+    }
+
+    public BilleteraVirtual(String idBilleteraVirtual, Double plataEnCuenta) {
+        this.idBilleteraVirtual = idBilleteraVirtual;
+        this.dineroFiat=plataEnCuenta;
     }
 
     public List<CriptoMoneda> getCriptoMonedas() {
@@ -51,6 +66,18 @@ public class BilleteraVirtual {
 
     public void agregarMoneda(CriptoMoneda criptoMoneda){
         this.criptoMonedas.add(criptoMoneda);
+    }
+
+    public void agregarTransaccion(Transaccion transaccion){
+        this.transacciones.add(transaccion);
+    }
+
+    public void cobrarDinero(Double precioRestado){
+        this.dineroFiat=this.dineroFiat-precioRestado;
+    }
+
+    public  void  ingresarDineroEnBilletera (Double dineroIngresado){
+        this.dineroFiat=this.dineroFiat+dineroIngresado;
     }
 
 }

@@ -1,6 +1,6 @@
 package Entidades;
 
-import FormaDePago.FormasDePago;
+import FormaDePago.IngresoDeDinero;
 
 import java.util.*;
 
@@ -10,13 +10,13 @@ public class Cliente {
     private String correo;
     private String tipoDni;
 
-    private FormasDePago formasDePago;
+    private IngresoDeDinero formasDePago;
 
-    public FormasDePago getFormasDePago() {
+    public IngresoDeDinero getFormasDePago() {
         return formasDePago;
     }
 
-    public void setFormasDePago(FormasDePago formasDePago) {
+    public void setFormasDePago(IngresoDeDinero formasDePago) {
         this.formasDePago = formasDePago;
     }
 
