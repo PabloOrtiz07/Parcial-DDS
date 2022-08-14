@@ -29,9 +29,17 @@ public class CriptoMoneda {
         return criptoApiCalls.obtenerPrecioCriptoMoneda(this.name)*this.cantidad;
     }
 
+    public Double cantidadPorPrecioIndicado(Double precioIndicado) throws Exception {
+        return precioCriptoMoneda()/precioIndicado;
+    }
+
     public CriptoMoneda(String name, Integer cantidad) {
         this.name = name;
         this.cantidad = cantidad;
+    }
+
+    public  void  modificarCriptoCantidad(Double cantidadIndicada){
+        this.cantidad=this.cantidad-cantidadIndicada;
     }
 
 }

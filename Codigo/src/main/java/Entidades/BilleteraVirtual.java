@@ -80,4 +80,16 @@ public class BilleteraVirtual {
         this.dineroFiat=this.dineroFiat+dineroIngresado;
     }
 
+    public CriptoMoneda getCriptoMoneda (String nombreCripto){
+        return  this.criptoMonedas.stream().filter(criptoMoneda -> criptoMoneda.getName().equals(nombreCripto)).findAny().get();
+    }
+
+    public void  cobrarCriptoDeBilletera (String nombreDeCripto, Double montoIndicado) throws Exception {
+        Double cantidad;
+        CriptoMoneda criptoMoneda= getCriptoMoneda(nombreDeCripto);
+        cantidad=criptoMoneda.cantidadPorPrecioIndicado(montoIndicado);
+        criptoMoneda.modificarCriptoCantidad(cantidad);
+        criptoMonedas.add(criptoMoneda);
+    }
+
 }

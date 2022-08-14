@@ -2,6 +2,7 @@ package main;
 
 import Compra.Compra;
 import Compra.CompraConDineroFiat;
+import Compra.CompraConCripto;
 import Entidades.BilleteraVirtual;
 import Entidades.CriptoMoneda;
 import Entidades.RepositorioBilleteras;
@@ -19,7 +20,7 @@ public class main {
             int seleccion;
             do{
                 System.out.println("Menu inicio: Ingrese el numero de la opcion que quiere realizar");
-                System.out.println("0.Salir\n1.Comprar Cripto");
+                System.out.println("0.Salir\n1.Comprar Cripto\n2.Ingresar Dinero a cuenta");
                 seleccion = entrada.nextInt();
                 switch (seleccion){
                     case 0:
@@ -65,14 +66,18 @@ public class main {
                         unaCompra.comprar(billeteraVirtual, criptoMoneda);
                         break;
                     case 1:
-                        // comprarCriptoMoneda();
+                        System.out.println("Ingrese la cripto que desea intercambiar de su billetera: ");
+                        nombre = entrada.nextLine();
+                        unaCompra = new CompraConCripto(nombre);
+                        unaCompra.comprar(billeteraVirtual,criptoMoneda);
                         break;
                     default:
+
                         System.out.println("Operacion invalida");
                         break;
                 }
             }catch (Exception e){
-                System.out.println("No se encontro la billtera");
+                System.out.println("Error");
             }
 
         }
@@ -131,7 +136,7 @@ public class main {
                     break;
             }
         }catch (Exception e){
-            System.out.println("No se encontro la billtera");
+            System.out.println("Error");
         }
     }
 
