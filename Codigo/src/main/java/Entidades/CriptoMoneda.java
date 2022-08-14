@@ -6,13 +6,13 @@ public class CriptoMoneda {
 
     private String name;
 
-    private Integer cantidad;
+    private double cantidad;
 
-    public Integer getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Integer cantidad) {
+    public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
 
