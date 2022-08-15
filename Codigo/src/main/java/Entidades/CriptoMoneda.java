@@ -6,14 +6,16 @@ public class CriptoMoneda {
 
     private String name;
 
-    private double cantidad;
-
-    public double getCantidad() {
-        return cantidad;
+    public CriptoMoneda(String name, Integer cantidad) {
+        this.name = name;
+    }
+    public Double precioUnitario() throws Exception {
+        CriptoApiCalls criptoApiCalls = new CriptoApiCalls();
+        return criptoApiCalls.obtenerPrecioCriptoMoneda(this.name);
     }
 
-    public void setCantidad(double cantidad) {
-        this.cantidad = cantidad;
+    public Double cantidadComprable(Double dineroAGastar) throws Exception {
+        return dineroAGastar/precioUnitario();
     }
 
     public String getName() {
@@ -23,23 +25,4 @@ public class CriptoMoneda {
     public void setName(String name) {
         this.name = name;
     }
-
-    public Double precioCriptoMoneda() throws Exception {
-        CriptoApiCalls criptoApiCalls = new CriptoApiCalls();
-        return criptoApiCalls.obtenerPrecioCriptoMoneda(this.name)*this.cantidad;
-    }
-
-    public Double cantidadPorPrecioIndicado(Double precioIndicado) throws Exception {
-        return precioCriptoMoneda()/precioIndicado;
-    }
-
-    public CriptoMoneda(String name, Integer cantidad) {
-        this.name = name;
-        this.cantidad = cantidad;
-    }
-
-    public  void  modificarCriptoCantidad(Double cantidadIndicada){
-        this.cantidad=this.cantidad-cantidadIndicada;
-    }
-
 }

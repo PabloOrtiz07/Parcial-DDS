@@ -2,11 +2,11 @@ package Compra;
 
 import Entidades.BilleteraVirtual;
 import Entidades.CriptoMoneda;
-
+/*
 public class CompraConCripto extends Compra  {
     private String nombreCripto;
 
-    @Override
+    @Override/*
     public void comprar (BilleteraVirtual billeteraVirtual, CriptoMoneda criptoMoneda) throws Exception {
        if( billeteraVirtual.getCriptoMoneda(nombreCripto).precioCriptoMoneda()>criptoMoneda.precioCriptoMoneda()){
            billeteraVirtual.agregarMoneda(criptoMoneda);
@@ -22,4 +22,4 @@ public class CompraConCripto extends Compra  {
     public CompraConCripto(String nombreCripto) {
         this.nombreCripto=nombreCripto;
     }
-}
+}*/

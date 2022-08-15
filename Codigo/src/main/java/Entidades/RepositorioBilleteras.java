@@ -40,7 +40,7 @@ public class RepositorioBilleteras {
     //Agrego en el constructor que se inicializen unas organizaciones default;
     public RepositorioBilleteras(){
         try {
-            BilleteraVirtual billeteraVirtualMaestra = new BilleteraVirtual("00", 10000.0);
+            BilleteraVirtual billeteraVirtualMaestra = new BilleteraVirtual();
             billeterasVirtuales.add(billeteraVirtualMaestra);
         }catch (Exception e) {
             System.out.println(e.getMessage());

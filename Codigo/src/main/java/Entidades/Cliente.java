@@ -1,25 +1,38 @@
 package Entidades;
+import Estados.*;
+import FormaDePago.CuentaBancaria;
+import FormaDePago.CuentaPayPal;
+import FormaDePago.Tarjeta;
 
-import FormaDePago.IngresoDeDinero;
-
-import java.util.*;
+import java.time.LocalDate;
+import java.util.*;;
 
 public class Cliente {
+
+    private NivelUsuario nivelUsuario;
+    public Cliente(String nombre, String apellido, String dni, LocalDate fechaNacimiento, String correo, String nombreUsuario, String contrasenia) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.fechaNacimiento = fechaNacimiento;
+        this.correo = correo;
+        this.nombreUsuario = nombreUsuario;
+        this.contrasenia = contrasenia;
+        this.nivelUsuario = new NivelBasico(this);
+    }
+
     private String nombre;
     private String apellido;
-    private String correo;
     private String tipoDni;
+    private String dni;
+    private LocalDate fechaNacimiento;
+    private String correo;
+    private String nombreUsuario;
+    private String contrasenia;
 
-    private IngresoDeDinero formasDePago;
-
-    public IngresoDeDinero getFormasDePago() {
-        return formasDePago;
-    }
-
-    public void setFormasDePago(IngresoDeDinero formasDePago) {
-        this.formasDePago = formasDePago;
-    }
-
+    private List<Tarjeta> tarjetas = new ArrayList<>();
+    private CuentaBancaria cuentaBancaria;
+    private CuentaPayPal cuentaPayPal;
     private BilleteraVirtual billeteraVirtual;
     private List<Cliente> referidos = new ArrayList<>();
 

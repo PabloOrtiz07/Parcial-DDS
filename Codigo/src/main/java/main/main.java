@@ -6,10 +6,10 @@ import Compra.CompraConCripto;
 import Entidades.BilleteraVirtual;
 import Entidades.CriptoMoneda;
 import Entidades.RepositorioBilleteras;
-import FormaDePago.DepositoBancario;
-import FormaDePago.IngresoDeDinero;
-import FormaDePago.TarjetaDeCredito;
-import FormaDePago.TarjetaDeDebito;
+//import FormaDePago.CuentaBancaria;
+//import FormaDePago.IngresoDeDinero;
+//import FormaDePago.Tarjeta;
+//import FormaDePago.TarjetaDeDebito;
 
 import java.util.Scanner;
 
@@ -55,7 +55,7 @@ public class main {
                 System.out.println("Ingrese la cantidad a comprar: ");
                 cantidad = entrada.nextInt();
                 CriptoMoneda criptoMoneda = new CriptoMoneda(nombre,cantidad);
-                System.out.println("Precio total a pagar "+criptoMoneda.precioCriptoMoneda());
+                //System.out.println("Precio total a pagar "+criptoMoneda.precioCriptoMoneda());
                 System.out.println("Ingrese el metodo de comprar la cripto: ");
                 System.out.println("0.Comprar con fiat\n1.Comprar Cripto");
                 int seleccion;
@@ -83,7 +83,7 @@ public class main {
         }
 
     private static void cargarDineroACuenta() throws Exception {
-        IngresoDeDinero ingresoDeDineroDinero;
+        //IngresoDeDinero ingresoDeDineroDinero;
         String  idBilletera,numeroTarjeta, titular, fechaVencimiento,numeroCBU,numeroBanco;;
         Double dineroIndicado;
         RepositorioBilleteras repositorioBilleteras = new RepositorioBilleteras();
@@ -108,8 +108,8 @@ public class main {
                     titular = entrada.nextLine();
                     System.out.println("Ingrese fechaVencimiento: ");
                     fechaVencimiento = entrada.nextLine();
-                    ingresoDeDineroDinero =  new TarjetaDeCredito(numeroTarjeta,titular,fechaVencimiento);
-                    ingresoDeDineroDinero.ingresarDinero(billeteraVirtual,dineroIndicado);
+                    //ingresoDeDineroDinero =  new Tarjeta(numeroTarjeta,titular,fechaVencimiento);
+                    //ingresoDeDineroDinero.ingresarDinero(billeteraVirtual,dineroIndicado);
                     break;
                 case 1:
                     System.out.println("Ingrese numero de la tarjeta: ");
@@ -118,8 +118,8 @@ public class main {
                     titular = entrada.nextLine();
                     System.out.println("Ingrese fechaVencimiento: ");
                     fechaVencimiento = entrada.nextLine();
-                    ingresoDeDineroDinero =  new TarjetaDeDebito(numeroTarjeta,titular,fechaVencimiento);
-                    ingresoDeDineroDinero.ingresarDinero(billeteraVirtual,dineroIndicado);
+                    //ingresoDeDineroDinero =  new TarjetaDeDebito(numeroTarjeta,titular,fechaVencimiento);
+                    //ingresoDeDineroDinero.ingresarDinero(billeteraVirtual,dineroIndicado);
                     break;
                 case 2:
                     System.out.println("Ingrese el CBU: ");
@@ -128,8 +128,8 @@ public class main {
                     titular = entrada.nextLine();
                     System.out.println("Ingrese el nombre de la entidad: ");
                     numeroBanco = entrada.nextLine();
-                    ingresoDeDineroDinero =  new DepositoBancario(numeroCBU,titular,numeroBanco);
-                    ingresoDeDineroDinero.ingresarDinero(billeteraVirtual,dineroIndicado);
+                    //ingresoDeDineroDinero =  new CuentaBancaria(numeroCBU,titular,numeroBanco);
+                    //ingresoDeDineroDinero.ingresarDinero(billeteraVirtual,dineroIndicado);
                     break;
                 default:
                     System.out.println("Operacion invalida");
