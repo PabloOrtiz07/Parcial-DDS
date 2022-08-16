@@ -4,7 +4,7 @@ import Entidades.Transaccion;
 
 
 public class ComprobanteFabrica {
-    public Comprobante crearComprobante(Integer tipoDeComprobante, Transaccion transaccion){
+    public Comprobante obtenerComprobante(Integer tipoDeComprobante, Transaccion transaccion){
         switch (tipoDeComprobante) {
             case 0:
                 return new Ticket(transaccion);

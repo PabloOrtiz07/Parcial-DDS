@@ -113,7 +113,7 @@ public class main {
 
     private static void comprarCriptoMoneda (Cliente cliente) throws Exception {
         RepositorioBilleteras repositorioBilleteras = new RepositorioBilleteras();
-        BilleteraVirtual billeteraVirtual;
+        BilleteraVirtual billeteraVirtualCliente = cliente.getBilleteraVirtual();
         String nombreCripto, idBilleteraCliente;
         Double cantidadDeCripto;
         Scanner entrada = new Scanner(System.in);
@@ -127,6 +127,7 @@ public class main {
             Transaccion transaccion = new Transaccion(oferta, cliente);
             FacadeTransaccion facadeTransaccion = new FacadeTransaccion();
             facadeTransaccion.realizarTransaccion(transaccion);
+            billeteraVirtualCliente.agregarTransaccion(transaccion);
             generarComprobante(transaccion);
 
         } catch (Exception e) {
@@ -141,7 +142,7 @@ public class main {
         System.out.println("0.Ticket \n1.Factura");
         opcionesDeComprobantes=entrada.nextInt();
         ComprobanteFabrica comprobanteFabrica = new ComprobanteFabrica();
-        comprobanteFabrica.crearComprobante(opcionesDeComprobantes,transaccion);
+        comprobanteFabrica.obtenerComprobante(opcionesDeComprobantes,transaccion);
     }
 
     private static void cargarDineroACuenta () throws Exception {
