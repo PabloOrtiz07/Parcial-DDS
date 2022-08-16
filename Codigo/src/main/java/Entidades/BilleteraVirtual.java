@@ -83,9 +83,6 @@ public class BilleteraVirtual {
         return ofertas.stream().filter(oferta ->oferta.getNombreDeLaCripto().equals(criptoMonedaBuscada.getName())).findAny().get();
     }
 
-    public Oferta buscadorDeOfertaDeCripto(CriptoMoneda criptoMonedaBuscada, Double cantidadDeCriptoBuscada){
-        return ofertas.stream().filter(oferta ->oferta.getNombreDeLaCripto().equals(criptoMonedaBuscada.getName())).
-                filter(oferta->oferta.getCantidadOfrecida()<=cantidadDeCriptoBuscada).findAny().get();
-    }
+
 
 }

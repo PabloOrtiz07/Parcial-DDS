@@ -8,7 +8,7 @@ public class FacadeTransaccion {
         BilleteraVirtual comprador = transaccion.getBilleteraVirutalComprador();
         BilleteraVirtual vendedor = transaccion.getBilleteraVirutalComprador();
         Double precio = transaccion.getPrecio();
-
         comprador.retirarDolares(precio);
+        
     }
 }

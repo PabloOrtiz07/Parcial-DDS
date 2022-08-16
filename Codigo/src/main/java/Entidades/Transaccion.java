@@ -1,18 +1,15 @@
 package Entidades;
 
-import Repositorios.RepositorioOfertas;
-
 import java.time.LocalDate;
 
 public class Transaccion {
 
-    public Transaccion(String idOoferta,BilleteraVirtual billeteraVirtualvendedor,double cantidadComprada){
-        Oferta oferta = RepositorioOfertas.getInstance().getOfertaPorId(idOoferta);
+    public Transaccion(Oferta oferta,BilleteraVirtual billeteraVirutalComprador){
         this.oferta = oferta;
-        this.billeteraVirtualvendedor = billeteraVirtualvendedor;
-        this.billeteraVirtualvendedor =  oferta.getbilleteraVendedor();
+        this.billeteraVirtualvendedor = oferta.billeteraVendedor;
+        this.billeteraVirutalComprador =  billeteraVirutalComprador;
         this.monedaComprada = oferta.getCriptoMoneda();
-        this.cantidadComprada = cantidadComprada;
+        this.cantidadComprada = oferta.getCantidadOfrecida();
         this.precio = oferta.getPrecioPorCantida(cantidadComprada);
     }
     protected Oferta oferta;
