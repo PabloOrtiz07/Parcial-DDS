@@ -1,15 +1,19 @@
 package Estados;
 
-import Entidades.Cliente;
-
 public class NivelPremium extends NivelUsuario {
 
-    @Override
     public double comisionPorVenta(Double precioVenta){
         return precioVenta * 0.5;
     }
-    @Override
+
     public double comisionPorConversionCriptomonedas(Double valorACambiar){
         return 0;
+    }
+
+    public boolean puedePasarDeNivel(int cantidadDeTransacciones){
+        return false; //es el nivel maximo
+    }
+    public NivelUsuario getNivelSiguiente() {
+        return null;
     }
 }

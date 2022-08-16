@@ -15,16 +15,16 @@ public class RepositorioCliente {
     }
 
     public void agregarCliente(Cliente cliente) throws Exception {
-        if(repositorioCliente.existeUsuarioConNombre(cliente.getNombre()))
-            throw new Exception("Ya existe usuario con ese nombre");
+        if(repositorioCliente.existeUsuarioConNombre(cliente.getNombreUsuario()))
+            throw new Exception("Ya existe usuario con ese nombre de usuario");
         clientes.add(cliente);
     }
 
-    public boolean existeUsuarioConNombre(String nombreCliente){
-        return clientes.stream().anyMatch(cliente ->nombreCliente.equals(cliente.getNombre()));
+    public boolean existeUsuarioConNombre(String nombreUsuarioCliente){
+        return clientes.stream().anyMatch(cliente ->nombreUsuarioCliente.equals(cliente.getNombreUsuario()));
     }
 
-    public Cliente getClientePorNombre(String nombre) throws NoSuchElementException {
-        return clientes.stream().filter(cliente ->nombre.equals(cliente.getNombre())).findAny().get();
+    public Cliente getClientePorNombreUsuario(String nombreUsuario) throws NoSuchElementException {
+        return clientes.stream().filter(cliente ->nombreUsuario.equals(cliente.getNombreUsuario())).findAny().get();
     }
 }

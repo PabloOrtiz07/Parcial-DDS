@@ -11,7 +11,7 @@ import java.util.*;
 public class Cliente {
 
     private NivelUsuario nivelUsuario;
-    public Cliente(String nombre, String apellido, String dni, LocalDate fechaNacimiento, String correo, String nombreUsuario, String contrasenia) {
+    public Cliente(String nombre, String apellido, String dni, String correo, String nombreUsuario, String contrasenia) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -20,6 +20,7 @@ public class Cliente {
         this.contrasenia = contrasenia;
         this.nivelUsuario = new NivelBasico();
         this.billeteraVirtual = new BilleteraVirtual();
+        this.cantidadCompras = 0;
     }
 
     public String getDni() {
@@ -38,6 +39,7 @@ public class Cliente {
     private String nombre;
     private String apellido;
     private String dni;
+    private int cantidadCompras;
     private LocalDate fechaNacimiento;
     private String correo;
     private String nombreUsuario;
@@ -75,6 +77,10 @@ public class Cliente {
         return false;
     }
 
+    public CuentaBancaria getCuentaBancaria() {
+        return cuentaBancaria;
+    }
+
     public void setCuentaPaypal(CuentaPayPal cuentaPaypal){
         this.cuentaPayPal = cuentaPaypal;
     }
@@ -87,4 +93,14 @@ public class Cliente {
         return billeteraVirtual;
     }
 
+    public boolean coincideContraseña(String contrasenia){
+        return this.contrasenia.equals(contrasenia);
+    }
+
+    public void agregarCompra(){
+        cantidadCompras++;
+        if(nivelUsuario.puedePasarDeNivel(cantidadCompras)){
+            nivelUsuario = nivelUsuario.getNivelSiguiente();
+        }
+    }
 }
