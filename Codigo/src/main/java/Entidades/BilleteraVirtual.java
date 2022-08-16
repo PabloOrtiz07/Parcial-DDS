@@ -3,8 +3,9 @@ package Entidades;
 
 import Repositorios.RepositorioOfertas;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class BilleteraVirtual {
 
@@ -70,5 +71,21 @@ public class BilleteraVirtual {
             return cantidad;
     }
 
+    public Double getDolaresEnCuenta() {
+        return dolaresEnCuenta;
+    }
+
+    public void retirarDolares(Double dolarCobrado){
+        this.dolaresEnCuenta=this.dolaresEnCuenta-dolarCobrado;
+    }
+
+    public Oferta buscadorDeOfertaDeCripto(CriptoMoneda criptoMonedaBuscada, Integer cantidadDeCriptoBuscada){
+        return ofertas.stream().filter(oferta ->oferta.getNombreDeLaCripto().equals(criptoMonedaBuscada.getName())).findAny().get();
+    }
+
+    public Oferta buscadorDeOfertaDeCripto(CriptoMoneda criptoMonedaBuscada, Double cantidadDeCriptoBuscada){
+        return ofertas.stream().filter(oferta ->oferta.getNombreDeLaCripto().equals(criptoMonedaBuscada.getName())).
+                filter(oferta->oferta.getCantidadOfrecida()<=cantidadDeCriptoBuscada).findAny().get();
+    }
 
 }

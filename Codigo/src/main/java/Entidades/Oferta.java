@@ -7,6 +7,10 @@ public class Oferta {
     private Double cantidadOfrecida;
     private Double precioPorUnidad;
 
+    public String getNombreDeLaCripto (){
+        return criptoMoneda.getName();
+    }
+
     public String getIdOferta() {
         return idOferta;
     }
@@ -31,4 +35,5 @@ public class Oferta {
         this.cantidadOfrecida = cantidadOfrecida;
         this.precioPorUnidad = precioPorUnidad;
     }
+
 }

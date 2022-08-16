@@ -1,6 +1,6 @@
 package Compra;
 
-import Entidades.Cliente;
+import Entidades.BilleteraVirtual;
 import Entidades.Transaccion;
 
 public class FacadeTransaccion {
@@ -9,6 +9,6 @@ public class FacadeTransaccion {
         BilleteraVirtual vendedor = transaccion.getBilleteraVirutalComprador();
         Double precio = transaccion.getPrecio();
 
-        comprador.retirarDolares();
+        comprador.retirarDolares(precio);
     }
 }

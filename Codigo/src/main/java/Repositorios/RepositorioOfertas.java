@@ -28,4 +28,6 @@ public class RepositorioOfertas {
         return ofertas.stream().filter(oferta -> idOferta.equals(oferta.getIdOferta())).findAny().get();
     }
 
+
+
 }

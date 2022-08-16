@@ -1,14 +1,8 @@
 package main;
 
-import Compra.CompraConDineroFiat;
-import Compra.CompraConCripto;
 import Entidades.BilleteraVirtual;
-import Entidades.CriptoMoneda;
 import Repositorios.RepositorioBilleteras;
-//import FormaDePago.CuentaBancaria;
-//import FormaDePago.IngresoDeDinero;
-//import FormaDePago.Tarjeta;
-//import FormaDePago.TarjetaDeDebito;
+import Repositorios.RepositorioOfertas;
 
 import java.util.Scanner;
 
@@ -39,6 +33,26 @@ public class main {
         }
 
         private static void comprarCriptoMoneda() throws Exception {
+            RepositorioBilleteras repositorioBilleteras = new RepositorioBilleteras();
+            BilleteraVirtual billeteraVirtual;
+            String nombreCripto, idBilleteraCliente;
+            Integer cantidadDeCripto;
+            Scanner entrada = new Scanner(System.in);
+            System.out.println("Ingrese la cripto moneda que desea comprar: ");
+            nombreCripto = entrada.nextLine();
+            System.out.println("Ingrese la cantidad que desea comprar: ");
+            cantidadDeCripto= entrada.nextInt();
+            try {
+                RepositorioOfertas repositorioOfertas = new //
+                        oferta=repositorioOfertas.asdfadsf(critp,cantidad)
+                        transaccion(oferta,cliente.billetera)
+
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+
+
+
         }
 
     private static void cargarDineroACuenta() throws Exception {

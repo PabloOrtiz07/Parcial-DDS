@@ -39,7 +39,7 @@ public class RepositorioBilleteras {
         this.billeterasVirtuales = billeterasVirtuales;
     }
 
-    //Agrego en el constructor que se inicializen unas organizaciones default;
+    //Agrego en el constructor que se inicializen unas Billeteras por default;
     public RepositorioBilleteras(){
         try {
             BilleteraVirtual billeteraVirtualMaestra = new BilleteraVirtual();
