@@ -20,6 +20,10 @@ public class RepositorioOfertas {
         ofertas.add(oferta);
     }
 
+    public void eliminarOfertas(Oferta oferta){
+        ofertas.remove(oferta);
+    }
+
     public Boolean existeOferta(String idOferta){
         return ofertas.stream().anyMatch(billeteraVirtual ->billeteraVirtual.getIdOferta().equals(idOferta));
     }

@@ -83,6 +83,16 @@ public class BilleteraVirtual {
         return ofertas.stream().filter(oferta ->oferta.getNombreDeLaCripto().equals(criptoMonedaBuscada.getName())).findAny().get();
     }
 
+    public void retirarCripto(CriptoMoneda criptoMoneda, Double cantidadARetirar){
+        Double cantidadVieja=criptoMonedasDisponibles.get(criptoMoneda);
+        criptoMonedasDisponibles.replace(criptoMoneda,cantidadVieja-cantidadARetirar);
+    }
+
+
+
+    public void agregarCripto(CriptoMoneda criptoMoneda, Double cantidadDeCripto){
+            criptoMonedasDisponibles.put(criptoMoneda,cantidadDeCripto);
+    }
 
 
 }
