@@ -1,20 +1,13 @@
 package FormaDePago;
 
-public class CuentaPayPal extends MetodoDePago {
-    String correo;
-    String id;
-    String nombre;
-    String apellido;
+public class CuentaPayPal extends MedioDePago {
+    private String nombreUsuario;
+    private String email;
+    private Double dineroEnCuenta;
 
-    public CuentaPayPal(String correo, String id, String nombre, String apellido){
-        super();
-        this.correo = correo;
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.pagoStrategy = new TransferenciaStrategy();
-    }
-    public boolean pagar(){
-        return true;
+    public CuentaPayPal(String nombreUsuario, String email) {
+        this.nombreUsuario = nombreUsuario;
+        this.email = email;
+        this.dineroEnCuenta = Math.floor(Math.random()*(4000-800+1)+800);
     }
 }

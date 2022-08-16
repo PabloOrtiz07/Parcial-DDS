@@ -1,54 +1,63 @@
 package Entidades;
 
-import Estados.EstadosDeTransaccion;
+import Repositorios.RepositorioOfertas;
 
+import java.time.LocalDate;
 
 public class Transaccion {
-    private String idTransaccion;
-    private EstadosDeTransaccion estadosDeTransaccion;
-    private BilleteraVirtual origen;
-    private BilleteraVirtual destino;
-    private String fecha;
+
+    public Transaccion(String idOoferta,BilleteraVirtual billeteraVirtualvendedor,double cantidadComprada){
+        Oferta oferta = RepositorioOfertas.getInstance().getOfertaPorId(idOoferta);
+        this.oferta = oferta;
+        this.billeteraVirtualvendedor = billeteraVirtualvendedor;
+        this.billeteraVirtualvendedor =  oferta.getbilleteraVendedor();
+        this.monedaComprada = oferta.getCriptoMoneda();
+        this.cantidadComprada = cantidadComprada;
+        this.precio = oferta.getPrecioPorCantida(cantidadComprada);
+    }
+    protected Oferta oferta;
+    protected String idTransaccion;
+    protected BilleteraVirtual billeteraVirtualvendedor;
+    protected BilleteraVirtual billeteraVirutalComprador;
+    protected LocalDate fechaCompletada;
+    protected CriptoMoneda monedaComprada;
+    protected Double cantidadComprada;
+    protected double precio;
+
+    public void setFechaCompletada(LocalDate fechaCompletada) {
+        this.fechaCompletada = fechaCompletada;
+    }
 
     public String getIdTransaccion() {
         return idTransaccion;
     }
 
-    public void setIdTransaccion(String idTransaccion) {
-        this.idTransaccion = idTransaccion;
+    public Oferta getOferta() {
+        return oferta;
+    }
+    public BilleteraVirtual getBilleteraVirutalComprador() {
+        return billeteraVirutalComprador;
     }
 
-    public EstadosDeTransaccion getEstadosDeTransaccion() {
-        return estadosDeTransaccion;
+    public BilleteraVirtual getVendedor() {
+        return billeteraVirtualvendedor;
     }
 
-    public void setEstadosDeTransaccion(EstadosDeTransaccion estadosDeTransaccion) {
-        this.estadosDeTransaccion = estadosDeTransaccion;
+    public LocalDate getFechaCompletada() {
+        return fechaCompletada;
     }
 
-    public BilleteraVirtual getOrigen() {
-        return origen;
+    public CriptoMoneda getMonedaComprada() {
+        return monedaComprada;
     }
 
-    public void setOrigen(BilleteraVirtual origen) {
-        this.origen = origen;
+    public Double getCantidadComprada() {
+        return cantidadComprada;
     }
 
-    public BilleteraVirtual getDestino() {
-        return destino;
+    public double getPrecio() {
+        return precio;
     }
-
-    public void setDestino(BilleteraVirtual destino) {
-        this.destino = destino;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-
 }
+
+

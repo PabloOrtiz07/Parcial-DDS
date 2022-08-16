@@ -1,14 +1,18 @@
 package Entidades;
 
 
+import Repositorios.RepositorioOfertas;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class BilleteraVirtual {
 
     private Double dolaresEnCuenta = 0.0;
-    private HashMap<CriptoMoneda, Double> criptoMonedas = new HashMap<>();
+    private HashMap<CriptoMoneda, Double> criptoMonedasDisponibles = new HashMap<>();
+    private HashMap<CriptoMoneda, Double> criptoMonedasEnOferta = new HashMap<>();
     private List<Transaccion> transacciones = new ArrayList<>();
+    private List<Oferta> ofertas = new ArrayList<>();
     private String idBilleteraVirtual;
 
     public String getIdBilleteraVirtual() {
@@ -23,22 +27,28 @@ public class BilleteraVirtual {
         dolaresEnCuenta += cantidadAgregada;
     }
 
-    public void restarDolaresEnCuenta(Double cantidadARestar){
-        if(dolaresEnCuenta >= cantidadARestar)
-            dolaresEnCuenta-= cantidadARestar;
-        else
-            throw new RuntimeException("No Hay fondos disponibles de este moneda para realizar la transaccion");
+    public boolean restarDolaresEnCuenta(Double cantidadARestar){
+        if(dolaresEnCuenta >= cantidadARestar){
+            dolaresEnCuenta -= cantidadARestar;
+            return true;
+        }
+        return false;
     }
 
     public void sumarCriptomoneda(CriptoMoneda moneda, Double cantidadAgregada){
-        Double valorActual = getCantidadCriptomoneda(moneda);
-        criptoMonedas.put(moneda, valorActual + cantidadAgregada);
+        Double valorActual = getCantidadCriptomoneda(criptoMonedasDisponibles, moneda);
+        criptoMonedasDisponibles.put(moneda, valorActual + cantidadAgregada);
     }
 
-    public void restarCriptomonedas(CriptoMoneda moneda, Double precioRestado){
-        Double valorActual = getCantidadCriptomoneda(moneda);
+    public void ofertarCriptomonedas(CriptoMoneda moneda, Double precioPorUnidad, double cantidadOfertada){
+        Oferta oferta = new Oferta(this, moneda, precioPorUnidad, cantidadOfertada);
+        RepositorioOfertas.getInstance().agregarOfertas(oferta);
+
+    }
+    public void venderCriptomonedaOfertada(CriptoMoneda moneda, Double precioRestado){
+        Double valorActual = getCantidadCriptomoneda(criptoMonedasEnOferta, moneda);
         if(valorActual >= precioRestado)
-            criptoMonedas.put(moneda, valorActual - precioRestado);
+            criptoMonedasEnOferta.put(moneda, valorActual - precioRestado);
         else
             throw new RuntimeException("No Hay fondos disponibles de esta criptomoneda");
     }
@@ -52,8 +62,8 @@ public class BilleteraVirtual {
         this.transacciones.add(transaccion);
     }
 
-    private double getCantidadCriptomoneda(CriptoMoneda moneda){
-        Double cantidad = criptoMonedas.get(moneda);
+    private double getCantidadCriptomoneda(HashMap<CriptoMoneda, Double> hm,CriptoMoneda moneda){
+        Double cantidad = hm.get(moneda);
         if(cantidad == null)
             return 0;
         else

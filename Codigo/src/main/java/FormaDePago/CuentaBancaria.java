@@ -1,25 +1,17 @@
 package FormaDePago;
 
-import Entidades.BilleteraVirtual;
-
-public class CuentaBancaria extends MetodoDePago{
+public class CuentaBancaria extends MedioDePago {
     private String cbu;
     private String RazonSocial;
     private String nombreBanco;
-    private Double dineroEnCuenta;
 
     public CuentaBancaria(String cbu, String RazonSocial, String nombreBanco) {
-        super();
         this.cbu = cbu;
         this.RazonSocial = RazonSocial;
         this.nombreBanco = nombreBanco;
-        this.pagoStrategy = new TransferenciaStrategy();
+        this.dineroEnCuenta = Math.floor(Math.random()*(10500-1000+1)+1000);
     }
-
-    public void agregarDinero(double dineroTransferido){
-        this.dineroEnCuenta += dineroTransferido;
-    }
-    public void pagar(){
-        this.dineroEnCuenta -= 1;
+    public void agregarDinero(Double cantidad){
+        dineroEnCuenta += cantidad;
     }
 }

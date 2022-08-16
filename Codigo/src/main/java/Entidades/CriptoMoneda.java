@@ -6,7 +6,7 @@ public class CriptoMoneda {
 
     private String name;
 
-    public CriptoMoneda(String name, Integer cantidad) {
+    public CriptoMoneda(String name) {
         this.name = name;
     }
     public Double precioUnitario() throws Exception {

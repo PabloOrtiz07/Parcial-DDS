@@ -1,46 +1,33 @@
 package FormaDePago;
 
-import Entidades.BilleteraVirtual;
-
-public class Tarjeta extends MetodoDePago{
+public class Tarjeta{
+    Double limiteCompra;
     private String numeroTarjeta;
-    private String titularTarjeta;
-
     private String cvv;
-    private String fechaVencimiento;
+    private String titularTarjeta;
+    private EmisorTarjeta emisor;
+    private double recargo;
 
-    public Tarjeta(String numeroTarjeta, String cvv, String titularTarjeta, String fechaVencimiento) {
-        super();
+    public Tarjeta(String numeroTarjeta, String cvv, String titularTarjeta, String emisor) {
         this.numeroTarjeta = numeroTarjeta;
         this.cvv = cvv;
         this.titularTarjeta = titularTarjeta;
-        this.fechaVencimiento = fechaVencimiento;
-        this.pagoStrategy = new TarjetaStrategy();
+        this.emisor = EmisorTarjeta.valueOf(emisor);
+        this.limiteCompra = Math.floor(Math.random()*(7000-500+1)+1000);
+        this.recargo = 1.05; //Al pagar la tarjeta cobra un 5% de comision
     }
-
     public String getNumeroTarjeta() {
         return numeroTarjeta;
     }
 
-    public void setNumeroTarjeta(String numeroTarjeta) {
-        this.numeroTarjeta = numeroTarjeta;
+   public boolean puedePagar(Double cantidad){
+        return cantidad * recargo <= limiteCompra;
+   }
+    public boolean pagar(Double cantidad){
+        if(puedePagar(cantidad)) {
+            limiteCompra -= cantidad * recargo;
+            return true;
+        }
+        return false;
     }
-
-    public String getTitularTarjeta() {
-        return titularTarjeta;
-    }
-
-    public void setTitularTarjeta(String titularTarjeta) {
-        this.titularTarjeta = titularTarjeta;
-    }
-    public String getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public void setFechaVencimiento(String fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
-    }
-
-
-
 }

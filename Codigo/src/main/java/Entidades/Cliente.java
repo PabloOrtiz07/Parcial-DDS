@@ -2,10 +2,11 @@ package Entidades;
 import Estados.*;
 import FormaDePago.CuentaBancaria;
 import FormaDePago.CuentaPayPal;
+import FormaDePago.MedioDePago;
 import FormaDePago.Tarjeta;
 
 import java.time.LocalDate;
-import java.util.*;;
+import java.util.*;
 
 public class Cliente {
 
@@ -14,48 +15,28 @@ public class Cliente {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        this.fechaNacimiento = fechaNacimiento;
         this.correo = correo;
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
-        this.nivelUsuario = new NivelBasico(this);
+        this.nivelUsuario = new NivelBasico();
+        this.billeteraVirtual = new BilleteraVirtual();
     }
 
     public String getDni() {
         return dni;
     }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
-
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
     public String getNombreUsuario() {
         return nombreUsuario;
     }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
     public String getContrasenia() {
         return contrasenia;
     }
 
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
-
     private String nombre;
     private String apellido;
-    private String tipoDni;
     private String dni;
     private LocalDate fechaNacimiento;
     private String correo;
@@ -66,55 +47,44 @@ public class Cliente {
     private CuentaBancaria cuentaBancaria;
     private CuentaPayPal cuentaPayPal;
     private BilleteraVirtual billeteraVirtual;
-    private List<Cliente> referidos = new ArrayList<>();
-
-
 
     public String getNombre() {
         return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getApellido() {
         return apellido;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+
+    public boolean cargarDolares(MedioDePago medioDePago, Double cantidad){
+        CuentaBancaria cuentaBancariaExchange =  Exchange.getInstance().getCuentaBancaria();
+        if(medioDePago.enviarDinero(cantidad,cuentaBancariaExchange)) {
+            billeteraVirtual.sumarDolaresEnCuenta(cantidad);
+            return true;
+        }
+        return false;
     }
 
-    public String getCorreo() {
-        return correo;
+    public boolean retirarDolares(Double cantidad){
+        if(billeteraVirtual.restarDolaresEnCuenta(cantidad))
+        {
+            cuentaBancaria.agregarDinero(cantidad);
+            return true;
+        }
+        return false;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setCuentaPaypal(CuentaPayPal cuentaPaypal){
+        this.cuentaPayPal = cuentaPaypal;
     }
 
-    public String getTipoDni() {
-        return tipoDni;
-    }
-
-    public void setTipoDni(String tipoDni) {
-        this.tipoDni = tipoDni;
+    public void setCuentaBancaria(CuentaBancaria cuentaBancaria) {
+        this.cuentaBancaria = cuentaBancaria;
     }
 
     public BilleteraVirtual getBilleteraVirtual() {
         return billeteraVirtual;
     }
 
-    public void setBilleteraVirtual(BilleteraVirtual billeteraVirtual) {
-        this.billeteraVirtual = billeteraVirtual;
-    }
-
-    public List<Cliente> getReferidos() {
-        return referidos;
-    }
-
-    public void setReferidos(List<Cliente> referidos) {
-        this.referidos = referidos;
-    }
 }

@@ -1,4 +1,6 @@
-package Entidades;
+package Repositorios;
+
+import Entidades.BilleteraVirtual;
 
 import java.util.ArrayList;
 import java.util.List;
