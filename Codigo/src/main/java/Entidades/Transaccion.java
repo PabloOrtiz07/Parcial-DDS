@@ -3,15 +3,33 @@ package Entidades;
 import java.time.LocalDate;
 
 public class Transaccion {
+    public BilleteraVirtual getBilleteraVirtualvendedor() {
+        return billeteraVirtualvendedor;
+    }
 
-    public Transaccion(Oferta oferta,BilleteraVirtual billeteraVirutalComprador){
+    public void setBilleteraVirtualvendedor(BilleteraVirtual billeteraVirtualvendedor) {
+        this.billeteraVirtualvendedor = billeteraVirtualvendedor;
+    }
+
+    public Transaccion(Oferta oferta, Cliente cliente){
+        BilleteraVirtual billeteraVirtual = new BilleteraVirtual();
         this.oferta = oferta;
         this.billeteraVirtualvendedor = oferta.billeteraVendedor;
         this.billeteraVirutalComprador =  billeteraVirutalComprador;
         this.monedaComprada = oferta.getCriptoMoneda();
         this.cantidadComprada = oferta.getCantidadOfrecida();
         this.precio = oferta.getPrecioPorCantida(cantidadComprada);
+        this.autorDeCompra = cliente;
     }
+
+    public Cliente getAutorDeCompra() {
+        return autorDeCompra;
+    }
+
+    public void setAutorDeCompra(Cliente autorDeCompra) {
+        this.autorDeCompra = autorDeCompra;
+    }
+
     protected Oferta oferta;
     protected String idTransaccion;
     protected BilleteraVirtual billeteraVirtualvendedor;
@@ -20,6 +38,8 @@ public class Transaccion {
     protected CriptoMoneda monedaComprada;
     protected Double cantidadComprada;
     protected double precio;
+
+    protected Cliente autorDeCompra;
 
     public void setFechaCompletada(LocalDate fechaCompletada) {
         this.fechaCompletada = fechaCompletada;

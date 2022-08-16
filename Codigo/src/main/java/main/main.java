@@ -6,6 +6,7 @@ import Entidades.Cliente;
 import Entidades.Oferta;
 import Entidades.Transaccion;
 import Estados.NivelBasico;
+import Facturas.FacturaFabrica;
 import Repositorios.RepositorioBilleteras;
 import Repositorios.RepositorioCliente;
 import Repositorios.RepositorioOfertas;
@@ -123,13 +124,24 @@ public class main {
         try {
             RepositorioOfertas repositorioOfertas = new RepositorioOfertas();
             Oferta oferta = repositorioOfertas.buscadorDeOfertaDeCripto(nombreCripto, cantidadDeCripto);
-            Transaccion transaccion = new Transaccion(oferta, cliente.getBilleteraVirtual());
+            Transaccion transaccion = new Transaccion(oferta, cliente);
             FacadeTransaccion facadeTransaccion = new FacadeTransaccion();
             facadeTransaccion.realizarTransaccion(transaccion);
+            generarFactura(transaccion);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static void generarFactura (Transaccion transaccion) throws Exception {
+        Integer opcionesDeFacturas;
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Menu de Facturas. Ingrese el numero de factura que desea ingresar");
+        System.out.println("0.Factura Electronica\n1.Factura Ordinaria");
+        opcionesDeFacturas=entrada.nextInt();
+        FacturaFabrica facturaFabrica = new FacturaFabrica();
+        facturaFabrica.crearFactura(opcionesDeFacturas,transaccion);
     }
 
     private static void cargarDineroACuenta () throws Exception {

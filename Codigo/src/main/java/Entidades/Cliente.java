@@ -41,6 +41,15 @@ public class Cliente {
     private String dni;
     private int cantidadCompras;
     private LocalDate fechaNacimiento;
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     private String correo;
     private String nombreUsuario;
     private String contrasenia;
