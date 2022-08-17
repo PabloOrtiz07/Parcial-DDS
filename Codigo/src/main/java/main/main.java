@@ -1,6 +1,7 @@
 package main;
 
 import Compra.FacadeTransaccion;
+import ConexionBS.ClienteDAO;
 import Entidades.BilleteraVirtual;
 import Entidades.Cliente;
 import Entidades.Oferta;
@@ -64,6 +65,7 @@ public class main {
     }
 
     private static void registro(){
+        ClienteDAO clienteDAO= new ClienteDAO();
         System.out.println("Registro: ");
         Scanner entrada = new Scanner(System.in);
         System.out.println("Ingrese su nombre: ");
@@ -82,6 +84,7 @@ public class main {
         RepositorioCliente repositorioCliente = RepositorioCliente.getInstance();
         try {
             repositorioCliente.agregarCliente(cliente);
+            clienteDAO.registerCliente(cliente);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
