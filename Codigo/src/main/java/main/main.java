@@ -1,6 +1,7 @@
 package main;
 
 import Compra.FacadeTransaccion;
+import ConexionBS.BilleteraVirtualDAO;
 import ConexionBS.ClienteDAO;
 import Entidades.BilleteraVirtual;
 import Entidades.Cliente;
@@ -64,6 +65,22 @@ public class main {
         }
     }
 
+    private static void habilitarBilletera(Cliente cliente){
+        BilleteraVirtualDAO billeteraVirtualDAO = new BilleteraVirtualDAO();
+        Integer cantidadDeBilleteras;
+        RepositorioBilleteras repositorioBilleteras = RepositorioBilleteras.getInstance();
+        try {
+
+            cantidadDeBilleteras = repositorioBilleteras.getBilleterasVirtuales().size();
+            BilleteraVirtual billeteraVirtual = new BilleteraVirtual(cantidadDeBilleteras);
+            cliente.setBilleteraVirtual(billeteraVirtual);
+            billeteraVirtualDAO.registerBilletera(billeteraVirtual);
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
     private static void registro(){
         ClienteDAO clienteDAO= new ClienteDAO();
         System.out.println("Registro: ");
@@ -84,7 +101,9 @@ public class main {
         RepositorioCliente repositorioCliente = RepositorioCliente.getInstance();
         try {
             repositorioCliente.agregarCliente(cliente);
+            habilitarBilletera(cliente);
             clienteDAO.registerCliente(cliente);
+
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

@@ -93,6 +93,10 @@ public class BilleteraVirtual {
     public void agregarCripto(CriptoMoneda criptoMoneda, Double cantidadDeCripto){
             criptoMonedasDisponibles.put(criptoMoneda,cantidadDeCripto);
     }
+    public BilleteraVirtual( ) {
 
-
+    }
+    public BilleteraVirtual(Integer idBilleteraVirtual) {
+        this.idBilleteraVirtual = String.valueOf(idBilleteraVirtual);
+    }
 }

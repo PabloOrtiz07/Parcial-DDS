@@ -59,6 +59,10 @@ public class Cliente {
     private CuentaPayPal cuentaPayPal;
     private BilleteraVirtual billeteraVirtual;
 
+    public void setBilleteraVirtual(BilleteraVirtual billeteraVirtual) {
+        this.billeteraVirtual = billeteraVirtual;
+    }
+
     public String getNombre() {
         return nombre;
     }
